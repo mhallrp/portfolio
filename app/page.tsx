@@ -29,7 +29,7 @@ import Desktop from "../Components/Desktop";
 export default async function App() {
   // const data = await getSessionStatus();
   return (
-    <div className={`flex h-full w-screen overflow-hidden bg-windoorsGreen`}>
+    <div className={`flex h-dvh w-screen overflow-hidden bg-windoorsGreen`}>
       <Desktop initialUserData={  { name: "", score: 0 } } initialState={"login"} />
       {/* <Desktop initialUserData={ data.success ? { name: data.data.name, score: data.data.score } : { name: "", score: 0 } } initialState={"login"} /> */}
     </div>
