@@ -26,8 +26,11 @@ async function getSessionStatus() {
 export default async function App() {
   const data = await getSessionStatus();
   return (
-    <div className={`flex h-dvh w-screen overflow-hidden bg-black`}>
-      <Desktop initialUserData={ data.success ? { name: data.data.name, score: data.data.score } : { name: "", score: 0 } } initialState={"login"} />
+    <div className={`flex h-dvh w-screen overflow-hidden bg-windoorsGreen`}>
+
+HELLO WORLD
+
+      {/* <Desktop initialUserData={ data.success ? { name: data.data.name, score: data.data.score } : { name: "", score: 0 } } initialState={"login"} /> */}
     </div>
   );
 }
