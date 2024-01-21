@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import Desktop from "../Components/Desktop";
 const apiKey = process.env.NEXT_PRODUCTION_API_KEY;
 async function getSessionStatus() {
@@ -12,14 +12,18 @@ async function getSessionStatus() {
       });
       const data = await response.json();
       if (response.ok) {
+        console.log("response is ok");
         return { data: data, success: true };
       } else {
+        console.log("response error");
         return { data: data.error, success: false };
       }
     } catch (networkError) {
+      console.log("network error");
       return { data: "Network error occurred", success: false };
     }
   }
+  console.log("api key is bad");
   return { data: "API key is undefined", success: false };
 }
 
@@ -27,10 +31,8 @@ export default async function App() {
   const data = await getSessionStatus();
   return (
     <div className={`flex h-dvh w-screen overflow-hidden bg-windoorsGreen`}>
-
-HELLO WORLD
-
-      {/* <Desktop initialUserData={ data.success ? { name: data.data.name, score: data.data.score } : { name: "", score: 0 } } initialState={"login"} /> */}
+      HELLO WORLD
+      <Desktop initialUserData={ data.success ? { name: data.data.name, score: data.data.score } : { name: "", score: 0 } } initialState={"login"} />
     </div>
   );
 }
