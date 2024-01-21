@@ -42,7 +42,7 @@ const Desktop: React.FC<DesktopProps> = ({ initialUserData, initialState }) => {
       <div
         className={`flex w-full overflow-hidden flex-col items-center bg-windoorsGreen`}
       >
-        <div className="w-full">
+        <div className="w-full overflow-hidden">
           {values.map((valueData, index) => {
             return (
               <TitleBar

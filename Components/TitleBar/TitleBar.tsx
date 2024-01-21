@@ -70,7 +70,6 @@ const TitleBar: React.FC<TitleBarProps> = ({
   };
 
   return (
-    <>
       <Draggable
         nodeRef={nodeRef}
         handle=".handle"
@@ -129,7 +128,6 @@ const TitleBar: React.FC<TitleBarProps> = ({
           </div>
         </div>
       </Draggable>
-    </>
   );
 };
 
