@@ -4,7 +4,7 @@ import Quiz from "../Quiz";
 import QuizNotes from "../Note/Note";
 import Taskbar from "../TaskBar/TaskBar";
 import Authentication from "../Authentication";
-import Style from "./style.module.css";
+// import Style from "./style.module.css";
 import { useState, useEffect } from "react";
 import TitleBar from "../TitleBar";
 
