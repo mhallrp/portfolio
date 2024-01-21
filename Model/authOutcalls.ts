@@ -1,6 +1,6 @@
 import { AuthResponse, LoginResponse } from "../Types";
 
-const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+const apiKey = process.env.NEXT_PRODUCTION_API_KEY;
 
 export const SessionCheck = async () => {
   if (typeof apiKey !== "undefined") {
