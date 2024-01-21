@@ -15,6 +15,9 @@ interface DesktopProps {
 
 
 const Desktop: React.FC<DesktopProps> = ({ initialUserData, initialState }) => {
+
+
+  
   const [state, changeState] = useState(initialState);
   const [shutdown, setShutdown] = useState(false);
   const [userData, setUserData] = useState(initialUserData);
