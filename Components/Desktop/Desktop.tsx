@@ -43,7 +43,8 @@ const Desktop: React.FC<DesktopProps> = ({ initialUserData, initialState }) => {
         className={`flex w-full overflow-hidden flex-col items-center bg-windoorsGreen`}
       >
         <div className="w-full">
-          {values.map((valueData, index) => {
+        <Authentication changeState={changeState} />
+          {/* {values.map((valueData, index) => {
             return (
               <TitleBar
                 key={valueData.id}
@@ -67,7 +68,7 @@ const Desktop: React.FC<DesktopProps> = ({ initialUserData, initialState }) => {
                 )}
               </TitleBar>
             );
-          })}
+          })} */}
         </div>
         {state === "quiz" && (
           <>

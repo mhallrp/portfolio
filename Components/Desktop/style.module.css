@@ -1,0 +1,18 @@
+.iconOverlay {
+    background-color: #000080;
+    opacity: 0.5;
+  }
+
+  /* style.module.css or your CSS file */
+.two-line-truncate {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal; /* Allow wrapping */
+    max-height: 3rem; /* Adjust based on your font size and line height */
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+  

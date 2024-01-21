@@ -36,7 +36,7 @@ const  page = () => {
 <TestC />
 
 
-      {/* <Desktop initialUserData={ { name: "", score: 0 } } initialState={"login"} /> */}
+      <Desktop initialUserData={ { name: "", score: 0 } } initialState={"login"} />
     </div>
   );
 }
