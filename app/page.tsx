@@ -1,6 +1,5 @@
 
 import Desktop from "../Components/Desktop";
-import TestC from "@/Components/TestC";
 // const apiKey = process.env.API_KEY;
 // async function getSessionStatus() {
 //   if (typeof apiKey !== "undefined") {
@@ -33,7 +32,6 @@ const  page = () => {
   return (
     <div className={`flex h-dvh w-screen overflow-hidden bg-windoorsGreen`}>
 
-<TestC />
 
 
       <Desktop initialUserData={ { name: "", score: 0 } } initialState={"login"} />
