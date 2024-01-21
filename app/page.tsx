@@ -27,11 +27,13 @@ async function getSessionStatus() {
   return { data: "API key is undefined", success: false };
 }
 
-export default async function App() {
-  const data = await getSessionStatus();
+const  page = () => {
+  // const data = await getSessionStatus();
   return (
     <div className={`flex h-dvh w-screen overflow-hidden bg-windoorsGreen`}>
-      <Desktop initialUserData={ data.success ? { name: data.data.name, score: data.data.score } : { name: "", score: 0 } } initialState={"login"} />
+      <Desktop initialUserData={ { name: "", score: 0 } } initialState={"login"} />
     </div>
   );
 }
+
+export default page

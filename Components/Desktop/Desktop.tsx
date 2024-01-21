@@ -37,9 +37,7 @@ const Desktop: React.FC<DesktopProps> = ({ initialUserData, initialState }) => {
     }
   }, [state]);
 
-  
-
-  // if (!shutdown) {
+  if (!shutdown) {
     return (
       <div
         className={`flex w-full overflow-hidden flex-col items-center bg-windoorsGreen`}
@@ -84,6 +82,6 @@ const Desktop: React.FC<DesktopProps> = ({ initialUserData, initialState }) => {
       </div>
     );
   }
-// };
+};
 
 export default Desktop;
