@@ -16,7 +16,7 @@ const AuthInputSection: React.FC<InputSectionProps> = ({ formData, setFormData, 
   return (
     <>
       <h2 className="py-5 text-left font-nunito text-black">
-        {formData.isRegister ? "Choose a user name and password to create an acount on WinDoors" : "Type a user name and password to log into Windoors."}
+        {formData.isRegister ? "Choose a user name and password to create an acount on portfolio 98" : "Type a user name and password to log into Windoors."}
       </h2>
       <div className="flex w-full flex-col justify-center">
         <div className="mb-4 flex flex-row items-center">

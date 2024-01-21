@@ -27,7 +27,7 @@ const Desktop: React.FC<DesktopProps> = ({ initialUserData, initialState }) => {
       setValues([
         {
           id: 0,
-          title: "Welcome to WinDoors",
+          title: "Welcome to portfolio 98",
           positionX: (window.outerWidth - 440) / 2,
           positionY: (window.outerHeight - 200) / 4,
           type: "login",
