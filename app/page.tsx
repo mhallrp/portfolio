@@ -1,6 +1,6 @@
 "use client";
 import Desktop from "../Components/Desktop";
-const apiKey = process.env.NEXT_PRODUCTION_API_KEY;
+const apiKey = process.env.API_KEY;
 async function getSessionStatus() {
   if (typeof apiKey !== "undefined") {
     try {

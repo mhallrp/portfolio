@@ -1,4 +1,4 @@
-const apiKey = process.env.NEXT_PRODUCTION_API_KEY;
+const apiKey = process.env.API_KEY;
 
 export const getCategories = async () => {
   if (typeof apiKey !== "undefined") {
