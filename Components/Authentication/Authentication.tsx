@@ -1,29 +1,23 @@
-"use client";
 import { useRef, useEffect, useState } from "react";
-import {
-  HandleSubmit,
-  CheckFormData,
-  PasswordInputCheck,
-} from "../../Model/authLogic";
-import InputSection from "./AuthInputSection";
-import { FormData, InputErrors, UserData } from "../../Types";
-import AuthSubmitButton from "./AuthSubmitButton";
-import LoginIcon from "../../assets/loginIcon.png";
+import { CheckFormData, PasswordInputCheck } from "../../Model/authLogic";
+import InputSection from "./InputSection";
+import { FormData, InputErrors, UserData, Values } from "../../Types";
+import ImageSection from "./ImageSection";
+import LoginRegister from "./LoginRegister/LoginRegister";
 
 interface AuthenticationProps {
   changeState: (state: string, userData: UserData) => void;
+  setValues: React.Dispatch<React.SetStateAction<Values[]>>;
 }
 
-const Authentication: React.FC<AuthenticationProps> = ({ changeState }) => {
+const Authentication: React.FC<AuthenticationProps> = ({ changeState, setValues }) => {
   const [disableButton, setDisableButton] = useState(true);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
   const authRef = useRef<HTMLDivElement>(null);
+  const [loading, setLoading] = useState(false);
   const [inputErrors, setInputErrors] = useState<InputErrors>({
     usernameError: "",
     passwordError: "",
   });
-
   const [formData, setFormData] = useState<FormData>({
     username: "",
     password: "",
@@ -44,70 +38,25 @@ const Authentication: React.FC<AuthenticationProps> = ({ changeState }) => {
     }));
   }, [formData]);
 
-  const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
-    const result = await HandleSubmit(
-      e,
-      formData,
-      changeState,
-      disableButton,
-      setError
-    );
-    if (!result) {
-      setLoading(false);
-      setError(true);
-      setTimeout(function () {
-        setError(false);
-      }, 2000);
-    }
-  };
-
   return (
-    <div ref={authRef} className="z-50 flex ">
-      <div className="mx-4 mt-6 flex h-full w-24 ">
-        <img src={LoginIcon.src} alt="loginIcon" className="h-auto w-full " />
-      </div>
-      <div
-        className={`items-left flex flex-row mr-4 justify-start  ${
-          loading && "pointer-events-none"
-        }`}
-      >
-        <form
-          onSubmit={(e) => {
-            submitForm(e);
-          }}
-        >
-          <InputSection
-            formData={formData}
-            setFormData={setFormData}
-            inputErrors={inputErrors}
-            error={error}
-          />
-          <AuthSubmitButton
-            disableButton={disableButton}
-            isRegister={formData.isRegister}
-          />
-
-          <div className="mt-4 flex w-full flex-row gap-2 mb-4">
-            {formData.isRegister
-              ? "Already have an account?"
-              : "Dont have an account?"}
-            <button
-              onClick={() => {
-                setFormData(() => ({
-                  username: "",
-                  password: "",
-                  confirmPassword: "",
-                  isRegister: !formData.isRegister,
-                }));
-              }}
-              className="font-bold text-purple underline"
-            >
-              {formData.isRegister ? " Login here" : " Sign up here"}
-            </button>
-          </div>
-        </form>
+    <div ref={authRef} className="z-50 flex">
+      <ImageSection />
+      <div className={`items-left mr-4 flex flex-col justify-start  ${loading && "pointer-events-none"}`}>
+        <h2 className="max-w-96 py-4 text-left font-nunito text-black">
+          {formData.isRegister
+            ? "Choose a user name and password to create an acount on portfolio 98."
+            : `Type a user name and password to log into portfolio 98.`}
+        </h2>
+        <InputSection
+          formData={formData}
+          setFormData={setFormData}
+          inputErrors={inputErrors}
+          disableButton={disableButton}
+          changeState={changeState}
+          setLoading={setLoading}
+          setValues={setValues}
+        />
+        <LoginRegister formData={formData} setFormData={setFormData} />
       </div>
     </div>
   );

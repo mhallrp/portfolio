@@ -55,7 +55,7 @@ const StartMenu: React.FC<StartMenuProps> = ({
     changeState!("login", { name: "", score: 0 });
   };
 
-  type ItemType = "quiz" | "note";
+  type ItemType = "quiz" | "note" | "error";
 
   const addItem = (itemType: ItemType) => {
     setNotes((prev) => {

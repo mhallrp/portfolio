@@ -137,4 +137,4 @@ const Quiz: React.FC<QuizProps> = ({
   );
 };
 
-export default React.memo(Quiz);
+export default Quiz;

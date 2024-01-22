@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const Note = () => {
-  const [text, setText] = useState("");
+const [text, setText] = useState("");
 
   return (
         <div className="flex flex-col bg-white">

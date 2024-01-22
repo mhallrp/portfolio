@@ -1,9 +1,8 @@
-
-
 import { Register, Login } from "./authOutcalls";
 import { UserData, FormData } from "../Types";
 
 export const UserInputCheck = (userFocus: boolean, username: string) => {
+  //User is not editing or input value is 0 (no errors)
   if (userFocus || username.length < 1) {
     return true;
   } else if (username.length < 4 || username.length > 20) {
@@ -11,6 +10,13 @@ export const UserInputCheck = (userFocus: boolean, username: string) => {
   }
   return true;
 };
+
+export const CheckUsername = (username:string) => {
+  if (username.length < 4 || username.length > 20) {
+    return false;
+  }
+  return true;
+}
 
 export const PasswordInputCheck = (formData: FormData) => {
   if (formData.password.length === 0) {
@@ -76,7 +82,6 @@ export const HandleSubmit = async (
     changeState("quiz", { name: data.name, score: data.score });
     return true;
   } else {
-
     return false;
   }
 };
