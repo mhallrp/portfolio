@@ -18,6 +18,11 @@ export interface QuizData {
   correct: number | null;
 }
 
+export interface WindowData {
+  title:string
+  data:string
+}
+
 export interface Values {
   id:number;
   title: string;

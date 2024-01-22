@@ -11,12 +11,12 @@ export const UserInputCheck = (userFocus: boolean, username: string) => {
   return true;
 };
 
-export const CheckUsername = (username:string) => {
+export const CheckUsername = (username: string) => {
   if (username.length < 4 || username.length > 20) {
     return false;
   }
   return true;
-}
+};
 
 export const PasswordInputCheck = (formData: FormData) => {
   if (formData.password.length === 0) {
@@ -64,10 +64,8 @@ export const HandleSubmit = async (
   formData: FormData,
   changeState: (state: string, userData: UserData) => void,
   disableButton: boolean,
-  setError: (value: boolean) => void,
 ) => {
   if (disableButton) {
-    setError(true);
     return false;
   }
   e.preventDefault();

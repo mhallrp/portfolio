@@ -6,14 +6,14 @@ import StartButton from "./StartButton";
 
 interface TaskBarProps {
   changeState: (state: string, userData: UserData) => void;
-  setNotes: React.Dispatch<React.SetStateAction<Values[]>>;
+  setValues: React.Dispatch<React.SetStateAction<Values[]>>;
   setShutdown: React.Dispatch<React.SetStateAction<boolean>>;
   username: string;
 }
 
 const Taskbar: React.FC<TaskBarProps> = ({
   changeState,
-  setNotes,
+  setValues,
   setShutdown,
   username,
 }) => {
@@ -27,7 +27,7 @@ const Taskbar: React.FC<TaskBarProps> = ({
         changeState={changeState}
         startMenuRef={startMenuRef}
         setStartMenuVisible={setStartMenuVisible}
-        setNotes={setNotes}
+        setValues={setValues}
         setShutdown={setShutdown}
         username={username}
         startMenuVisible={startMenuVisible}

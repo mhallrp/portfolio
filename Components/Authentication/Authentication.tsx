@@ -1,9 +1,10 @@
-import { useRef, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { CheckFormData, PasswordInputCheck } from "../../Model/authLogic";
 import InputSection from "./InputSection";
 import { FormData, InputErrors, UserData, Values } from "../../Types";
 import ImageSection from "./ImageSection";
-import LoginRegister from "./LoginRegister/LoginRegister";
+import LoginRegister from "./LoginRegisterOption/LoginRegisterOption";
+import TitleSection from "./TitleSection/TitleSection";
 
 interface AuthenticationProps {
   changeState: (state: string, userData: UserData) => void;
@@ -12,7 +13,6 @@ interface AuthenticationProps {
 
 const Authentication: React.FC<AuthenticationProps> = ({ changeState, setValues }) => {
   const [disableButton, setDisableButton] = useState(true);
-  const authRef = useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState(false);
   const [inputErrors, setInputErrors] = useState<InputErrors>({
     usernameError: "",
@@ -39,14 +39,10 @@ const Authentication: React.FC<AuthenticationProps> = ({ changeState, setValues 
   }, [formData]);
 
   return (
-    <div ref={authRef} className="z-50 flex">
+    <div className="z-50 flex">
       <ImageSection />
       <div className={`items-left mr-4 flex flex-col justify-start  ${loading && "pointer-events-none"}`}>
-        <h2 className="max-w-96 py-4 text-left font-nunito text-black">
-          {formData.isRegister
-            ? "Choose a user name and password to create an acount on portfolio 98."
-            : `Type a user name and password to log into portfolio 98.`}
-        </h2>
+        <TitleSection formData={formData} />
         <InputSection
           formData={formData}
           setFormData={setFormData}

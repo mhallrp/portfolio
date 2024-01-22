@@ -1,49 +1,29 @@
 import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 import { useState } from "react";
-import { SetStateType, FormData, InputErrors } from "../../../Types";
+import { SetStateType, FormData } from "../../../Types";
 
 interface PasswordInputProps {
   confirm: boolean;
   setFormData: SetStateType<FormData>;
   formData: FormData;
-  inputErrors: InputErrors;
-  labelData: string
+  labelData: string;
 }
 
-const AuthPasswordInput: React.FC<PasswordInputProps> = ({
-  confirm,
-  formData,
-  setFormData,
-  inputErrors,
-  labelData,
-}) => {
+const AuthPasswordInput: React.FC<PasswordInputProps> = ({ confirm, formData, setFormData, labelData }) => {
   const [showPassword, setShowPassword] = useState(false);
   const togglePasswordVisibility = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setShowPassword(!showPassword);
   };
   return (
-    <div className="flex flex-row mr-4 mb-2 items-center w-full">
-      <label className="min-w-[100px] text-md text-black" htmlFor="password">
+    <div className="mb-2 mr-4 flex w-full flex-row items-center">
+      <label className="text-md min-w-[100px] text-black" htmlFor="password">
         {labelData}
       </label>
-      <div
-        className={`relative z-10 flex w-full`}
-      >
+      <div className={`relative z-10 flex w-full`}>
         <input
           type={showPassword ? "text" : "password"}
-          className={`w-full border p-[3px] outline-none 
-        ${
-          formData.isRegister &&
-          inputErrors.passwordError === "Passwords do not match" &&
-          "border-red-600"
-        } 
-        ${
-          formData.isRegister &&
-          inputErrors.passwordError !== "" &&
-          !confirm &&
-          "border-red-600"
-        }`}
+          className={`w-full border p-[3px] outline-none `}
           value={confirm ? formData.confirmPassword : formData.password}
           onChange={(e) => {
             setFormData((prevFormData) => ({

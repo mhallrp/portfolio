@@ -43,7 +43,7 @@ const Desktop: React.FC<DesktopProps> = ({ initialUserData, initialState }) => {
     return (
       <div className={`flex w-full flex-col items-center overflow-hidden bg-windoorsGreen`}>
         <div className="w-full overflow-hidden">
-          {values.map((valueData, index) => {
+          {values.map((valueData) => {
             return (
               <TitleBar key={valueData.id} values={valueData} setValues={setValues} zIndex={topZ} updateZIndex={setTopZ} close={true}>
                 {valueData.type === "note" ? (
@@ -59,7 +59,7 @@ const Desktop: React.FC<DesktopProps> = ({ initialUserData, initialState }) => {
             );
           })}
         </div>
-        {state === "quiz" && <Taskbar changeState={changeState} setNotes={setValues} setShutdown={setShutdown} username={userData.name} />}
+        {state === "quiz" && <Taskbar changeState={changeState} setValues={setValues} setShutdown={setShutdown} username={userData.name} />}
       </div>
     );
   }

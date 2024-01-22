@@ -15,18 +15,12 @@ export interface QuizProps {
   setValues: React.Dispatch<React.SetStateAction<Values[]>>;
 }
 
-const Quiz: React.FC<QuizProps> = ({
-  setUserData,
-  userData,
-  values,
-  setValues,
-}) => {
+const Quiz: React.FC<QuizProps> = ({ setUserData, userData, values, setValues }) => {
   const [startCountdown, setStartCountdown] = useState(false);
   const [startTimer, setStartTimer] = useState(3);
   const [countdownKey, setCountdownKey] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState(0);
   const [score, setScore] = useState(0);
-  const [quizOpacity, setQuizOpacity] = useState(0);
   const quizData = values.data as QuizData;
 
   useEffect(() => {
@@ -45,46 +39,18 @@ const Quiz: React.FC<QuizProps> = ({
   };
 
   useEffect(() => {
-    setQuizOpacity(0);
-    if(quizData.triviaQuestions.length < 1){
     setQuestions(setValues, selectedCategory, values.id);
-    }
   }, [selectedCategory]);
-
-  useEffect(() => {
-    if (quizData.triviaQuestions.length > 0) {
-      quizOpacity === 0 && setTimeout(() => setQuizOpacity(1), 100);
-    }
-  }, [quizData]);
 
   return (
     quizData.triviaQuestions.length > 0 && (
-      <div
-        className="relative flex min-w-0 max-w-5xl flex-col items-center justify-center  border "
-        style={{
-          opacity: quizOpacity,
-          transition: "opacity 300ms ease-out",
-        }}
-      >
-        <div
-          className={`z100 white fixed bg-white px-16 py-12 ${
-            startTimer === 0 && "opacity-0"
-          }`}
-        >
+      <div className="relative flex min-w-0 max-w-5xl flex-col items-center justify-center  border ">
+        <div className={`z100 white fixed bg-white px-16 py-12 ${startTimer === 0 && "opacity-0"}`}>
           <h1 className="text-4xl ">{startTimer}</h1>
         </div>
-        <Categories
-          setSelectedCategory={setSelectedCategory}
-          setScore={setScore}
-        />
-        <QuizCountdown
-          duration={10}
-          key={countdownKey}
-          startCountdown={startCountdown}
-        />
-        <div
-          className={`flex flex-col items-center border-b bg-white px-6 pb-6 pt-4`}
-        >
+        <Categories setSelectedCategory={setSelectedCategory} setScore={setScore} />
+        <QuizCountdown duration={10} key={countdownKey} startCountdown={startCountdown} />
+        <div className={`flex flex-col items-center border-b bg-white px-6 pb-6 pt-4`}>
           <QuizQuestion quizData={quizData} score={score} />
           <div className="mt-5 flex w-full flex-col flex-nowrap content-center justify-center gap-4 sm:flex-row sm:flex-wrap">
             {quizData.answers.map((e, index) => (
@@ -101,13 +67,8 @@ const Quiz: React.FC<QuizProps> = ({
                         const quizData = item.data as QuizData;
                         const updatedData = {
                           ...quizData,
-                          selected:
-                            quizData.correct == null &&
-                            quizData.selected != index
-                              ? index
-                              : null,
+                          selected: quizData.correct == null && quizData.selected != index ? index : null,
                         };
-
                         return {
                           ...item,
                           data: updatedData,
