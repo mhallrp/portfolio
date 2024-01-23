@@ -1,5 +1,3 @@
-'use client'
-
 import Desktop from "../Components/Desktop";
 
 async function getSessionStatus() {
