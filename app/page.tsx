@@ -32,7 +32,7 @@ export default function App() {
     <div className={`flex h-dvh w-screen overflow-hidden bg-white`}>
       <Desktop
         initialUserData={{ name: sessionData.data.name, score: sessionData.data.score }}
-        initialState={sessionData.success ? "quiz" : "login"}
+        initialState={true ? "quiz" : "login"}
       />
     </div>
   );
