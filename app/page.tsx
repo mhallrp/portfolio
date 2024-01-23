@@ -20,7 +20,7 @@ export default function App() {
     const fetchData = async () => {
       const response = await getSessionStatus();
       setUserData(response.data);
-      response.success ? changeState("quiz") : showLogin();
+      response.success && changeState("quiz");
     };
     fetchData();
   }, []);
