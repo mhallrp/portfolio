@@ -28,7 +28,7 @@ export default async function App() {
   console.log(data.data)
   return (
     <div className={`flex h-dvh w-screen overflow-hidden bg-black`}>
-      <Desktop initialUserData={ data.success ? { name: data.data.name, score: data.data.score } : { name: "", score: 0 } } initialState={"login"} />
+      <Desktop initialUserData={ data.success ? { name: data.data.name, score: data.data.score } : { name: "", score: 0 } } initialState={data.success ? "quiz" : "login"} />
     </div>
   );
 }
