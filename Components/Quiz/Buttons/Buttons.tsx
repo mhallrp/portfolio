@@ -1,4 +1,4 @@
-import { handleNextQuestion, checkAnswer } from "../../../Model/QuizLogic"
+import { handleNextQuestion, checkAnswer } from "../../../Model/QuizModel"
 import { QuizData, Values, UserData } from "@/Types";
 
 
