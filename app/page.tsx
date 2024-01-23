@@ -57,13 +57,15 @@ export default function App() {
                 ) : valueData.type === "error" ? (
                   <ErrorView />
                 ) : (
-                  <Authentication setState={setState} setValues={setValues} setUserData={setUserData}/>
+                  <Authentication setState={setState} setValues={setValues} setUserData={setUserData} />
                 )}
               </TitleBar>
             );
           })}
         </div>
-        {state === "quiz" && <TaskBar setState={setState} setValues={setValues} setShutdown={setShutdown} username={userData.name} setUserData={setUserData}/>}
+        {state === "quiz" && (
+          <TaskBar setState={setState} setValues={setValues} setShutdown={setShutdown} username={userData.name} setUserData={setUserData} />
+        )}
       </div>
     </div>
   );

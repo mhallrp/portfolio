@@ -17,7 +17,6 @@ export const checkAnswer = (
       return prevValues.map((item) => {
         if (item.id === valueID && "answers" in item.data && "triviaQuestions" in item.data) {
           const quizData = item.data as QuizData;
-
           return {
             ...item,
             data: {

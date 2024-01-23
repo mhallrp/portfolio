@@ -1,6 +1,6 @@
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
-export const Generate = async (generateValue, generateAnswer) => {
+export const Generate = async (generateValue:any, generateAnswer:any) => {
   
   if (typeof apiKey !== "undefined") {
     try {
