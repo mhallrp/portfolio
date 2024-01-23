@@ -6,7 +6,7 @@ import { QuizData, Values, UserData } from "../../Types";
 import Categories from "./Categories";
 import QuizCountdown from "./Countdown/Countdown";
 import React, { useEffect, useState } from "react";
-import { setQuestions } from "../../../Model/QuizModel"
+import { setQuestions } from "../../Model/QuizModel"
 
 export interface QuizProps {
   setUserData: React.Dispatch<React.SetStateAction<UserData>>
