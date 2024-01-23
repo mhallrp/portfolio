@@ -58,7 +58,7 @@ const Desktop: React.FC<DesktopProps> = ({ initialUserData, initialState }) => {
             );
           })}
         </div>
-        {state === "quiz" && <Taskbar changeState={changeState} setValues={setValues} setShutdown={setShutdown} username={userData.name} />}
+        { state === "quiz" && <Taskbar changeState={changeState} setValues={setValues} setShutdown={setShutdown} username={userData.name} /> }
       </div>
     );
   }

@@ -1,3 +1,5 @@
+'use client'
+
 import Desktop from "../Components/Desktop";
 
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
