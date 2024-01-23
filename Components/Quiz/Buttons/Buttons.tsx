@@ -1,6 +1,7 @@
 import { handleNextQuestion, checkAnswer } from "../../../Model/QuizLogic"
 import { QuizData, Values, UserData } from "@/Types";
 
+
 interface QuizButtonProps {
   quizData: QuizData;
   setScore: React.Dispatch<React.SetStateAction<number>>;
