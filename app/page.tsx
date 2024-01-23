@@ -32,8 +32,8 @@ export default async function App() {
     <div className={`flex h-dvh w-screen overflow-hidden bg-white`}>
       <h1>{"data: " + data.data}</h1>
         <Desktop
-          initialUserData={data.success ? { name: data.data.name, score: data.data.score } : { name: "", score: 0 }}
-          initialState={data.success ? "quiz" : "login"}
+          initialUserData={data.success && data.data !== "No active session" ? { name: data.data.name, score: data.data.score } : { name: "", score: 0 }}
+          initialState={data.success && data.data !== "No active session" ? "quiz" : "login"}
         />
     </div>
   );
