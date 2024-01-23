@@ -22,7 +22,7 @@ export default function App() {
     const fetchData = async () => {
       const response = await getSessionStatus();
       setSessionData(response);
-        console.log("result: ", response.data);
+        console.log("result: ", response.success);
     };
 
     fetchData();
