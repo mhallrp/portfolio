@@ -10,14 +10,14 @@ import { AddNewWindow } from "@/Model/WindowLogic";
 interface InputSectionProps {
   formData: FormData;
   setFormData: React.Dispatch<React.SetStateAction<FormData>>;
-  inputErrors: InputErrors;
   disableButton: boolean;
-  changeState: (state: string, userData: UserData) => void;
+  setState: React.Dispatch<React.SetStateAction<string>>
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   setValues: React.Dispatch<React.SetStateAction<Values[]>>;
+  setUserData:React.Dispatch<React.SetStateAction<UserData>>
 }
 
-const AuthInputSection: React.FC<InputSectionProps> = ({ formData, setFormData, inputErrors, disableButton, changeState, setLoading, setValues }) => {
+const AuthInputSection: React.FC<InputSectionProps> = ({ formData, setFormData, disableButton, setState, setLoading, setValues, setUserData }) => {
   return (
     <>
       <form
@@ -25,7 +25,7 @@ const AuthInputSection: React.FC<InputSectionProps> = ({ formData, setFormData, 
           e.preventDefault();
           if (CheckUsername(formData.username)) {
             setLoading(true);
-            const result = await HandleSubmit(e, formData, changeState, disableButton);
+            const result = await HandleSubmit(e, formData, setState, setUserData, disableButton);
             if (!result) {
               setLoading(false);
             }

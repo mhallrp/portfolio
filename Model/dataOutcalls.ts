@@ -1,8 +1,8 @@
-'use server'
+"use server";
 
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
-export async function getCategories(){
+export async function getCategories() {
   if (typeof apiKey !== "undefined") {
     try {
       const response = await fetch(`https://request.matt-hall.dev/quiz/categories`, {
@@ -17,7 +17,7 @@ export async function getCategories(){
       return [];
     }
   }
-};
+}
 
 export const fetchQuestions = async (categoryId: number) => {
   if (typeof apiKey !== "undefined") {

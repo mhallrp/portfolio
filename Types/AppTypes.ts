@@ -1,5 +1,3 @@
-export type SetStateType<T> = React.Dispatch<React.SetStateAction<T>>;
-
 export interface UserData {
   name: string;
   score: number;
@@ -12,7 +10,7 @@ export interface QuizQuestion {
 }
 
 export interface QuizData {
-  title:string;
+  title: string;
   triviaQuestions: QuizQuestion[];
   answers: string[];
   selected: number | null;
@@ -20,16 +18,16 @@ export interface QuizData {
 }
 
 export interface WindowData {
-  title:string
-  data:string
+  title: string;
+  data: string;
 }
 
 export interface Values {
-  id:number;
+  id: number;
   positionX: number;
   positionY: number;
   type: string;
-  data: WindowData | QuizData
+  data: WindowData | QuizData;
 }
 
 export interface AuthResponse {

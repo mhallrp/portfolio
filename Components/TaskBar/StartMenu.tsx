@@ -8,7 +8,7 @@ import FolderIcon from "../../assets/folderIcon.png";
 import { AddNewWindow } from "@/Model/WindowLogic";
 
 export interface StartMenuProps {
-  changeState: (state: string, userData: UserData) => void;
+  setState: React.Dispatch<React.SetStateAction<string>>
   startMenuRef: React.RefObject<HTMLDivElement>;
   setValues: React.Dispatch<React.SetStateAction<Values[]>>;
   setStartMenuVisible: React.Dispatch<React.SetStateAction<boolean>>;
@@ -16,10 +16,11 @@ export interface StartMenuProps {
   username: string;
   startMenuVisible: boolean;
   startButtonRef: React.RefObject<HTMLDivElement>;
+  setUserData:React.Dispatch<React.SetStateAction<UserData>>
 }
 
 const StartMenu: React.FC<StartMenuProps> = ({
-  changeState,
+  setState,
   startMenuRef,
   setValues,
   setStartMenuVisible,
@@ -27,6 +28,7 @@ const StartMenu: React.FC<StartMenuProps> = ({
   username,
   startMenuVisible,
   startButtonRef,
+  setUserData,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [hovered, setHovered] = useState<number | null>(null);
@@ -52,7 +54,8 @@ const StartMenu: React.FC<StartMenuProps> = ({
   const handleLogout = async () => {
     setStartMenuVisible!(false);
     await Logout();
-    changeState!("login", { name: "", score: 0 });
+    setUserData({ name: "", score: 0 })
+    setState!("login");
   };
 
   type StartButton = {

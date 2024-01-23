@@ -5,17 +5,19 @@ import SystemTray from "./SystemTray";
 import StartButton from "./StartButton";
 
 interface TaskBarProps {
-  changeState: (state: string, userData: UserData) => void;
+  setState: React.Dispatch<React.SetStateAction<string>>;
   setValues: React.Dispatch<React.SetStateAction<Values[]>>;
   setShutdown: React.Dispatch<React.SetStateAction<boolean>>;
   username: string;
+  setUserData:React.Dispatch<React.SetStateAction<UserData>>
 }
 
 const Taskbar: React.FC<TaskBarProps> = ({
-  changeState,
+  setState,
   setValues,
   setShutdown,
   username,
+  setUserData,
 }) => {
   const startButtonRef = useRef<HTMLDivElement>(null);
   const startMenuRef = useRef<HTMLDivElement>(null);
@@ -24,7 +26,7 @@ const Taskbar: React.FC<TaskBarProps> = ({
   return (
     <>
       <StartMenu
-        changeState={changeState}
+        setState={setState}
         startMenuRef={startMenuRef}
         setStartMenuVisible={setStartMenuVisible}
         setValues={setValues}
@@ -32,6 +34,7 @@ const Taskbar: React.FC<TaskBarProps> = ({
         username={username}
         startMenuVisible={startMenuVisible}
         startButtonRef={startButtonRef}
+        setUserData={setUserData}
       />
       <div className="bg-greyTaskBar fixed bottom-0 left-0 right-0 flex h-9 items-center justify-between px-1 border border-t-white">
         <StartButton

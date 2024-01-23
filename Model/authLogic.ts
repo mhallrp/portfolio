@@ -61,7 +61,8 @@ export const CheckFormData = (formData: FormData) => {
 export const HandleSubmit = async (
   e: React.FormEvent<HTMLFormElement>,
   formData: FormData,
-  changeState: (state: string, userData: UserData) => void,
+  setState:   React.Dispatch<React.SetStateAction<string>>,
+  setUserData:  React.Dispatch<React.SetStateAction<UserData>>,
   disableButton: boolean,
 ) => {
   if (disableButton) {
@@ -76,7 +77,8 @@ export const HandleSubmit = async (
   }
   const { data, error, status } = await Login(formData.username, formData.password);
   if (status) {
-    changeState("quiz", { name: data.name, score: data.score });
+    setUserData({ name: data.name, score: data.score });
+    setState("quiz")
     return true;
   } else {
     return false;

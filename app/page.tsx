@@ -10,7 +10,7 @@ import Authentication from "@/Components/Authentication";
 import ErrorView from "@/Components/WarningView";
 
 export default function App() {
-  const [state, changeState] = useState("login");
+  const [state, setState] = useState("login");
   const [values, setValues] = useState<Values[]>([]);
   const [userData, setUserData] = useState({ name: "", score: 0 });
   const [topZ, setTopZ] = useState(51);
@@ -24,7 +24,7 @@ export default function App() {
   const checkSession = async () => {
     const response = await getSessionStatus();
     setUserData(response.data);
-    response.success ? changeState("quiz") : showLogin();
+    response.success ? setState("quiz") : showLogin();
   };
 
   useEffect(() => {
@@ -45,7 +45,7 @@ export default function App() {
 
   return (
     <div className={`flex h-dvh w-screen overflow-hidden ${shutdown ? "bg-black" : "bg-windoorsGreen"}`}>
-      <div className={`flex w-full flex-col items-center overflow-hidden bg-windoorsGreen`}>
+      <div className={`flex w-full flex-col items-center overflow-hidden`}>
         <div className="w-full overflow-hidden">
           {values.map((valueData) => {
             return (
@@ -57,13 +57,13 @@ export default function App() {
                 ) : valueData.type === "error" ? (
                   <ErrorView />
                 ) : (
-                  <Authentication changeState={changeState} setValues={setValues} />
+                  <Authentication setState={setState} setValues={setValues} setUserData={setUserData}/>
                 )}
               </TitleBar>
             );
           })}
         </div>
-        {state === "quiz" && <TaskBar changeState={changeState} setValues={setValues} setShutdown={setShutdown} username={userData.name} />}
+        {state === "quiz" && <TaskBar setState={setState} setValues={setValues} setShutdown={setShutdown} username={userData.name} setUserData={setUserData}/>}
       </div>
     </div>
   );
