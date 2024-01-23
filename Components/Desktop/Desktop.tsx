@@ -11,12 +11,14 @@ import ErrorView from "../WarningView";
 
 interface DesktopProps {
   initialUserData: UserData;
-  initialState: string;
+  // initialState: string;
+  state:string;
+  changeState: React.Dispatch<React.SetStateAction<string>>
   // children: { server: ReactNode };
 }
 
-const Desktop: React.FC<DesktopProps> = ({ initialUserData, initialState }) => {
-  const [state, changeState] = useState(initialState);
+const Desktop: React.FC<DesktopProps> = ({ initialUserData, state, changeState }) => {
+  // const [state, changeState] = useState(initialState);
   const [shutdown, setShutdown] = useState(false);
   const [userData, setUserData] = useState(initialUserData);
   const [topZ, setTopZ] = useState(51);
