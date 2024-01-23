@@ -26,7 +26,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    state === "quiz" ? setValues([]) : showLogin();
+    state === "quiz" && setValues([]);
   }, [state]);
 
   const showLogin = () => {
