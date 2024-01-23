@@ -26,7 +26,6 @@ const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
 
 export const Login = async (username: string, password: string): Promise<LoginResponse> => {
-  'use server'
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
   if (typeof apiKey !== "undefined") {
     try {

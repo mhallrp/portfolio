@@ -1,5 +1,6 @@
-import Desktop from "../Components/Desktop";
+'use client'
 
+import Desktop from "../Components/Desktop";
 async function getSessionStatus() {
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
   if (typeof apiKey !== "undefined") {
@@ -28,13 +29,12 @@ export default async function App() {
   console.log("success?: " + data.success);
   console.log("data: " + data.data);
   return (
-    <div className={`flex h-dvh w-screen overflow-hidden bg-black`}>
-      {data.success && (
+    <div className={`flex h-dvh w-screen overflow-hidden bg-white`}>
+      <h1>{"data: " + data.data}</h1>
         <Desktop
           initialUserData={data.success ? { name: data.data.name, score: data.data.score } : { name: "", score: 0 }}
           initialState={data.success ? "quiz" : "login"}
         />
-      )}
     </div>
   );
 }
