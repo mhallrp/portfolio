@@ -11,10 +11,10 @@ interface InputSectionProps {
   formData: FormData;
   setFormData: React.Dispatch<React.SetStateAction<FormData>>;
   disableButton: boolean;
-  setState: React.Dispatch<React.SetStateAction<string>>
+  setState: React.Dispatch<React.SetStateAction<string>>;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   setValues: React.Dispatch<React.SetStateAction<Values[]>>;
-  setUserData:React.Dispatch<React.SetStateAction<UserData>>
+  setUserData: React.Dispatch<React.SetStateAction<UserData>>;
 }
 
 const AuthInputSection: React.FC<InputSectionProps> = ({ formData, setFormData, disableButton, setState, setLoading, setValues, setUserData }) => {

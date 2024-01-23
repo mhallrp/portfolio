@@ -18,14 +18,15 @@ export default function App() {
   const isInitialMount = useRef(true);
 
   useEffect(() => {
+    const checkSession = async () => {
+      const response = await getSessionStatus();
+      setUserData(response.data);
+      response.success ? setState("quiz") : showLogin();
+    };
     checkSession();
   }, []);
 
-  const checkSession = async () => {
-    const response = await getSessionStatus();
-    setUserData(response.data);
-    response.success ? setState("quiz") : showLogin();
-  };
+
 
   useEffect(() => {
     isInitialMount.current ? (isInitialMount.current = false) : state === "quiz" ? setValues([]) : showLogin();
