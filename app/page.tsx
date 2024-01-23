@@ -35,7 +35,7 @@ export default function App() {
 
   return (
     checked && (
-      <div className={`flex h-dvh w-screen overflow-hidden bg-white`}>
+      <div className={`flex h-dvh w-screen overflow-hidden bg-windoorsGreen`}>
         <Desktop initialUserData={{ name: sessionData.data.name, score: sessionData.data.score }} state={state} changeState={changeState} />
       </div>
     )
