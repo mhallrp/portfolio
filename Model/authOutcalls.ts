@@ -1,28 +1,34 @@
-import { AuthResponse, LoginResponse } from "../Types";
+import { AuthResponse, LoginResponse, UserData } from "../Types";
 
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
-// export const SessionCheck = async () => {
-//   if (typeof apiKey !== "undefined") {
-//     try {
-//       const response = await fetch(`https://request.matt-hall.dev/check`, {
-//         credentials: "include",
-//         headers: {
-//           "X-API-Key": apiKey,
-//         },
-//       });
-//       const data = await response.json();
-//       if (response.ok) {
-//         return { data: data, success: true };
-//       } else {
-//         return { error: data.error, success: false };
-//       }
-//     } catch (networkError) {
-//       return { error: "Network error occurred", success: false };
-//     }
-//   }
-//   return { error: "API key is undefined", success: false };
-// };
+interface SessionResponse {
+  success: boolean;
+  data: string | UserData;
+}
+
+export const getSessionStatus = async (): Promise<SessionResponse> => {
+  const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+  if (typeof apiKey !== "undefined") {
+    try {
+      const response = await fetch(`https://request.matt-hall.dev/check`, {
+        credentials: "include",
+        headers: {
+          "X-API-Key": apiKey,
+        },
+      });
+      const data = await response.json();
+      if (response.ok) {
+        return { data: data, success: true };
+      } else {
+        return { data: data.error, success: false };
+      }
+    } catch (networkError) {
+      return { data: "Network error occurred", success: false };
+    }
+  }
+  return { data: "API key is undefined", success: false };
+}
 
 
 export const Login = async (username: string, password: string): Promise<LoginResponse> => {
