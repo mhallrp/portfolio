@@ -1,10 +1,10 @@
 import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 import { useState } from "react";
-import { SetStateType, FormData } from "../../../Types";
+import { FormData } from "../../../Types";
 
 interface PasswordInputProps {
   confirm: boolean;
-  setFormData: SetStateType<FormData>;
+  setFormData: React.Dispatch<React.SetStateAction<FormData>>;
   formData: FormData;
   labelData: string;
 }
