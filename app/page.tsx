@@ -22,17 +22,21 @@ export default function App() {
     const fetchData = async () => {
       const response = await getSessionStatus();
       setSessionData(response);
-        console.log("result: ", response.success);
+        console.log("result: ", response);
     };
 
     fetchData();
   }, []);
 
+  useEffect(() =>{
+    console.log(sessionData.success)
+  }, [sessionData])
+
   return (
     <div className={`flex h-dvh w-screen overflow-hidden bg-white`}>
       <Desktop
         initialUserData={{ name: sessionData.data.name, score: sessionData.data.score }}
-        initialState={true ? "quiz" : "login"}
+        initialState={sessionData.success ? "quiz" : "login"}
       />
     </div>
   );
