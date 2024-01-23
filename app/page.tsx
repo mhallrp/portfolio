@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { getSessionStatus } from "@/Model/authOutcalls";
 import { Values } from "@/Types";
 import TitleBar from "@/Components/TitleBar";
@@ -15,18 +15,20 @@ export default function App() {
   const [userData, setUserData] = useState({ name: "", score: 0 });
   const [topZ, setTopZ] = useState(51);
   const [shutdown, setShutdown] = useState(false);
+  const isInitialMount = useRef(true);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await getSessionStatus();
-      setUserData(response.data);
-      response.success && changeState("quiz");
-    };
-    fetchData();
+    checkSession();
   }, []);
 
+  const checkSession = async () => {
+    const response = await getSessionStatus();
+    setUserData(response.data);
+    response.success ? changeState("quiz") : showLogin();
+  };
+
   useEffect(() => {
-    state === "quiz" && setValues([]);
+    isInitialMount.current ? (isInitialMount.current = false) : state === "quiz" ? setValues([]) : showLogin();
   }, [state]);
 
   const showLogin = () => {
