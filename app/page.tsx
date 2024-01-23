@@ -30,8 +30,8 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    setChecked(true);
-  }, [sessionData]);
+    !checked && setChecked(true);
+  }, [state]);
 
   return (
     checked && (
