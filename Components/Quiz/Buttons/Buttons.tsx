@@ -1,11 +1,11 @@
-import { handleNextQuestion, checkAnswer } from "../../../Model/quizLogic";
-import { QuizData, SetStateType, Values, UserData } from "@/Types";
+import { handleNextQuestion, checkAnswer } from "@/Model/QuizLogic";
+import { QuizData, Values, UserData } from "@/Types";
 
 interface QuizButtonProps {
   quizData: QuizData;
-  setScore: SetStateType<number>;
+  setScore: React.Dispatch<React.SetStateAction<number>>;
   score: number;
-  setUserData: SetStateType<UserData>;
+  setUserData: React.Dispatch<React.SetStateAction<UserData>>;
   userData: UserData;
   selectedCategory: number;
   resetCountdown: () => void;

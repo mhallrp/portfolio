@@ -2,14 +2,14 @@ import QuizButtons from "./Buttons/Buttons";
 import QuizQuestion from "./Question/QuizQuestion";
 import QuizAnswerCard from "./AnswerCard/AnswerCard";
 import { decodeHtmlEntities } from "../../Model/utils";
-import { QuizData, SetStateType, Values, UserData } from "../../Types";
+import { QuizData, Values, UserData } from "../../Types";
 import Categories from "./Categories";
 import QuizCountdown from "./Countdown/Countdown";
 import React, { useEffect, useState } from "react";
-import { setQuestions } from "../../Model/quizLogic";
+import { setQuestions } from "../../Model/QuizLogic";
 
 export interface QuizProps {
-  setUserData: SetStateType<UserData>;
+  setUserData: React.Dispatch<React.SetStateAction<UserData>>
   userData: UserData;
   values: Values;
   setValues: React.Dispatch<React.SetStateAction<Values[]>>;
