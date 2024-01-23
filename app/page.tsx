@@ -13,8 +13,6 @@ interface SessionResponse {
   data: UserData;
 }
 
-
-
 export default function App() {
   const [sessionData, setSessionData] = useState<SessionResponse>({ success: false, data: { name: "", score: 0 } });
   const [state, changeState] = useState("login");
@@ -24,7 +22,7 @@ export default function App() {
     const fetchData = async () => {
       const response = await getSessionStatus();
       setSessionData(response);
-      response.success && changeState("quiz");
+      response.success ? changeState("quiz") : setChecked(true);
     };
     fetchData();
   }, []);
@@ -34,10 +32,10 @@ export default function App() {
   }, [state]);
 
   return (
-    checked && (
-      <div className={`flex h-dvh w-screen overflow-hidden bg-windoorsGreen`}>
+    <div className={`flex h-dvh w-screen overflow-hidden bg-windoorsGreen`}>
+      {checked && (
         <Desktop initialUserData={{ name: sessionData.data.name, score: sessionData.data.score }} state={state} changeState={changeState} />
-      </div>
-    )
+      )}
+    </div>
   );
 }
