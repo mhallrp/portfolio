@@ -13,6 +13,7 @@ interface SessionResponse {
   data: UserData;
 }
 
+
 export default function App() {
   const [sessionData, setSessionData] = useState<SessionResponse>({ success: false, data: { name: "", score: 0 } });
   const [state, changeState] = useState("login");
