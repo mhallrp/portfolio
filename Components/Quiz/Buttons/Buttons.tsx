@@ -1,4 +1,4 @@
-import { handleNextQuestion, checkAnswer } from "@/Model/QuizLogic"
+// import { handleNextQuestion, checkAnswer } from "@/Model/QuizLogic"
 import { QuizData, Values, UserData } from "@/Types";
 
 interface QuizButtonProps {
@@ -31,7 +31,7 @@ const Buttons: React.FC<QuizButtonProps> = ({
           quizData.selected !== null && quizData.correct === null ? "text-white" : "text-greyanswerb"
         } h-11 rounded  px-6`}
         disabled={quizData.correct != null ? true : quizData.selected != null ? false : true}
-        onClick={() => checkAnswer(quizData, setScore, setValues, valueID)}
+        // onClick={() => checkAnswer(quizData, setScore, setValues, valueID)}
       >
         Check Answer
       </button>
@@ -42,7 +42,7 @@ const Buttons: React.FC<QuizButtonProps> = ({
         disabled={quizData.correct != null ? false : true}
         onClick={() => {
           resetCountdown();
-          handleNextQuestion(quizData.triviaQuestions, setValues, score, setScore, setUserData, userData, selectedCategory, quizData, valueID);
+          // handleNextQuestion(quizData.triviaQuestions, setValues, score, setScore, setUserData, userData, selectedCategory, quizData, valueID);
         }}
       >
         Next Question

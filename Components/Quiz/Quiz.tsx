@@ -6,7 +6,7 @@ import { QuizData, Values, UserData } from "../../Types";
 import Categories from "./Categories";
 import QuizCountdown from "./Countdown/Countdown";
 import React, { useEffect, useState } from "react";
-import { setQuestions } from "../../Model/QuizLogic";
+// import { setQuestions } from "@/Model/QuizLogic";
 
 export interface QuizProps {
   setUserData: React.Dispatch<React.SetStateAction<UserData>>
@@ -39,7 +39,7 @@ const Quiz: React.FC<QuizProps> = ({ setUserData, userData, values, setValues })
   };
 
   useEffect(() => {
-    setQuestions(setValues, selectedCategory, values.id);
+    // setQuestions(setValues, selectedCategory, values.id);
   }, [selectedCategory]);
 
   return (
