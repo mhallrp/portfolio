@@ -1,7 +1,7 @@
 import Desktop from "../Components/Desktop";
 
-const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 async function getSessionStatus() {
+  const apiKey = process.env.NEXT_PUBLIC_API_KEY;
   if (typeof apiKey !== "undefined") {
     try {
       const response = await fetch(`https://request.matt-hall.dev/check`, {
@@ -29,10 +29,12 @@ export default async function App() {
   console.log("data: " + data.data);
   return (
     <div className={`flex h-dvh w-screen overflow-hidden bg-black`}>
-      <Desktop
-        initialUserData={data.success ? { name: data.data.name, score: data.data.score } : { name: "", score: 0 }}
-        initialState={data.success ? "quiz" : "login"}
-      />
+      {data.success && (
+        <Desktop
+          initialUserData={data.success ? { name: data.data.name, score: data.data.score } : { name: "", score: 0 }}
+          initialState={data.success ? "quiz" : "login"}
+        />
+      )}
     </div>
   );
 }
