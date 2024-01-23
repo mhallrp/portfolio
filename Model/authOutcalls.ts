@@ -4,7 +4,7 @@ const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
 interface SessionResponse {
   success: boolean;
-  data: string | UserData;
+  data: UserData;
 }
 
 export const getSessionStatus = async (): Promise<SessionResponse> => {
@@ -21,18 +21,17 @@ export const getSessionStatus = async (): Promise<SessionResponse> => {
       if (response.ok) {
         return { data: data, success: true };
       } else {
-        console.log("Error " + data.message)
-        return { data: data.message, success: false };
+        console.log("Error");
+        return { data: { name: "", score: 0 }, success: false };
       }
     } catch (networkError) {
-      console.log("Network error")
-      return { data: "Network error occurred", success: false };
+      console.log("Network error");
+      return { data:{ name: "", score: 0 }, success: false };
     }
   }
-  console.log("API Key error")
-  return { data: "API key is undefined", success: false };
-}
-
+  console.log("API Key error");
+  return { data: { name: "", score: 0 }, success: false };
+};
 
 export const Login = async (username: string, password: string): Promise<LoginResponse> => {
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;

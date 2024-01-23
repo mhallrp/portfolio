@@ -11,30 +11,28 @@ interface UserData {
 
 interface SessionResponse {
   success: boolean;
-  data: string | UserData | null;
+  data: UserData;
 }
 
 export default function App() {
-  const [sessionData, setSessionData] = useState<SessionResponse>({ success: false, data: null });
+
+  const [sessionData, setSessionData] = useState<SessionResponse>({ success: false, data: { name: "", score: 0 } });
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await getSessionStatus();
       setSessionData(response);
-        console.log("Error message: ", response.data);
+        console.log("result: ", response.data);
     };
 
     fetchData();
   }, []);
 
-  const userData = typeof sessionData.data === "object" ? sessionData.data : null;
-
   return (
     <div className={`flex h-dvh w-screen overflow-hidden bg-white`}>
-      <h1>{"data: " + (userData ? userData.name : "No data")}</h1>
       <Desktop
-        initialUserData={sessionData.success && userData ? { name: userData.name, score: userData.score } : { name: "", score: 0 }}
-        initialState={sessionData.success && userData ? "quiz" : "login"}
+        initialUserData={{ name: sessionData.data.name, score: sessionData.data.score }}
+        initialState={sessionData.success ? "quiz" : "login"}
       />
     </div>
   );
