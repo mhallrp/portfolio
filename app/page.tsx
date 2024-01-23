@@ -27,13 +27,13 @@ async function getSessionStatus() {
 export default async function App() {
   const data = await getSessionStatus();
   console.log("success?: " + data.success);
-  console.log("data: " + data.data);
+  console.log("data1: " + data.data as string);
   return (
     <div className={`flex h-dvh w-screen overflow-hidden bg-white`}>
-      <h1>{"data: " + data.data}</h1>
+      <h1>{"data1: " + data.data as string}</h1>
         <Desktop
-          initialUserData={data.success && data.data !== "No active session" ? { name: data.data.name, score: data.data.score } : { name: "", score: 0 }}
-          initialState={data.success && data.data !== "No active session" ? "quiz" : "login"}
+          initialUserData={data.success && data.data as string !== "No active session" ? { name: data.data.name, score: data.data.score } : { name: "", score: 0 }}
+          initialState={data.success && data.data as string !== "No active session" ? "quiz" : "login"}
         />
     </div>
   );
