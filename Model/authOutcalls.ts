@@ -21,12 +21,15 @@ export const getSessionStatus = async (): Promise<SessionResponse> => {
       if (response.ok) {
         return { data: data, success: true };
       } else {
-        return { data: data.error, success: false };
+        console.log("Error " + data.message)
+        return { data: data.message, success: false };
       }
     } catch (networkError) {
+      console.log("Network error")
       return { data: "Network error occurred", success: false };
     }
   }
+  console.log("API Key error")
   return { data: "API key is undefined", success: false };
 }
 
