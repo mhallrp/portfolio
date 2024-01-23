@@ -1,7 +1,5 @@
 import Desktop from "../Components/Desktop";
 
-
-
 export default async function App() {
   async function getSessionStatus() {
     'use server'
@@ -9,6 +7,7 @@ export default async function App() {
     if (typeof apiKey !== "undefined") {
       try {
         const response = await fetch(`https://request.matt-hall.dev/check`, {
+          cache: 'no-store',
           credentials: "include",
           headers: { "X-API-Key": apiKey },
         });
