@@ -2,7 +2,6 @@ import { Register, Login } from "./authOutcalls";
 import { UserData, FormData } from "../Types";
 
 export const UserInputCheck = (userFocus: boolean, username: string) => {
-  //User is not editing or input value is 0 (no errors)
   if (userFocus || username.length < 1) {
     return true;
   } else if (username.length < 4 || username.length > 20) {

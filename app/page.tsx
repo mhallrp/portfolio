@@ -25,11 +25,14 @@ async function getSessionStatus() {
 
 export default async function App() {
   const data = await getSessionStatus();
-  console.log("success?: " + data.success)
-  console.log("data: " + data.data)
+  console.log("success?: " + data.success);
+  console.log("data: " + data.data);
   return (
     <div className={`flex h-dvh w-screen overflow-hidden bg-black`}>
-      <Desktop initialUserData={ data.success ? { name: data.data.name, score: data.data.score } : { name: "", score: 0 } } initialState={ data.success ? "quiz" : "login" } />
+      <Desktop
+        initialUserData={data.success ? { name: data.data.name, score: data.data.score } : { name: "", score: 0 }}
+        initialState={data.success ? "quiz" : "login"}
+      />
     </div>
   );
 }

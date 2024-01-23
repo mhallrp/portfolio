@@ -26,6 +26,7 @@ export const SessionCheck = async () => {
 
 
 export const Login = async (username: string, password: string): Promise<LoginResponse> => {
+  'use server'
   if (typeof apiKey !== "undefined") {
     try {
       const response = await fetch(`https://request.matt-hall.dev/user/login`, {
