@@ -26,7 +26,7 @@ export const getSessionStatus = async (): Promise<SessionResponse> => {
       }
     } catch (networkError) {
       console.log("Network error");
-      return { data:{ name: "", score: 0 }, success: false };
+      return { data: { name: "", score: 0 }, success: false };
     }
   }
   console.log("API Key error");
