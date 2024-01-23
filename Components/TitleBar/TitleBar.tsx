@@ -14,33 +14,9 @@ interface TitleBarProps {
 
 const TitleBar: React.FC<TitleBarProps> = ({ children, values, setValues, zIndex, updateZIndex, close }) => {
   const [currentZIndex, setCurrentZIndex] = useState(50);
-  const [titleValue, setTitle] = useState(values.title);
-  const [isEditing, setIsEditing] = useState(false);
   const nodeRef = React.useRef(null);
   const handleClose = () => {
     setValues((prevValues) => prevValues.filter((item) => item.id !== values.id));
-  };
-
-  const handleTitleDoubleClick = () => {
-    if (close) {
-      if (titleValue == "New note") {
-        setTitle("");
-      }
-      setIsEditing(true);
-    }
-  };
-
-  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
-  };
-
-  const handleTitleBlur = () => {
-    if (titleValue) {
-      setIsEditing(false);
-    } else {
-      setTitle("New note");
-      setIsEditing(false);
-    }
   };
 
   const handleDragStop = (e: any, data: any) => {
@@ -76,24 +52,9 @@ const TitleBar: React.FC<TitleBarProps> = ({ children, values, setValues, zIndex
               cursor: "default",
             }}
           >
-            {isEditing ? (
-              <input
-                type="text"
-                value={titleValue}
-                onChange={handleTitleChange}
-                onBlur={handleTitleBlur}
-                autoFocus
-                className="w-full bg-gray-200 text-center outline-none"
-              />
-            ) : (
-              <label
-                onDoubleClick={handleTitleDoubleClick}
-                className="bold ml-1 w-full cursor-pointer text-left text-sm font-bold text-white"
-                style={{ cursor: "default" }}
-              >
-                {titleValue}
-              </label>
-            )}
+            <label className="bold ml-1 w-full cursor-pointer text-left text-sm font-bold text-white" style={{ cursor: "default" }}>
+              {values.data.title}
+            </label>
             {close && (
               <div className="flex items-center">
                 <FaTimes onClick={handleClose} className="cursor-pointer text-white" />

@@ -12,6 +12,7 @@ export interface QuizQuestion {
 }
 
 export interface QuizData {
+  title:string;
   triviaQuestions: QuizQuestion[];
   answers: string[];
   selected: number | null;
@@ -25,11 +26,10 @@ export interface WindowData {
 
 export interface Values {
   id:number;
-  title: string;
   positionX: number;
   positionY: number;
   type: string;
-  data: {}
+  data: WindowData | QuizData
 }
 
 export interface AuthResponse {

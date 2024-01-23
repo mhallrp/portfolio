@@ -64,9 +64,9 @@ const StartMenu: React.FC<StartMenuProps> = ({
     {
       icon: FolderIcon.src,
       label: "Quik Quiz",
-      action: () => AddNewWindow(setValues, "Quiz", "quiz", { triviaQuestions: [], answers: [], selected: null, correct: null }),
+      action: () => AddNewWindow(setValues, "quiz", { title:"Quiz", triviaQuestions: [], answers: [], selected: null, correct: null }),
     },
-    { icon: Notepad.src, label: "Notepad", action: () => AddNewWindow(setValues, "Note", "note", { title: "", data: "" }) },
+    { icon: Notepad.src, label: "Notepad", action: () => AddNewWindow(setValues, "note", { title: "Note", data: "" }) },
     { icon: LogoutIcon.src, label: "Log off " + username, action: () => handleLogout() },
     { icon: Shutdown.src, label: "Shutdown", action: () => setShutdown!(true) },
   ];

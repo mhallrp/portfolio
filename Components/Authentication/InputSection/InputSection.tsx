@@ -30,7 +30,7 @@ const AuthInputSection: React.FC<InputSectionProps> = ({ formData, setFormData, 
               setLoading(false);
             }
           } else {
-            AddNewWindow(setValues, "Error", "error", { title: "error", data: "error" });
+            AddNewWindow(setValues, "error", { title: "Error", data: "error" });
           }
         }}
       >

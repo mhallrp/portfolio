@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import { getCategories } from "../../../Model/dataOutcalls";
+// import { getCategories } from "../../../Model/dataOutcalls";
 import { SetStateType } from "../../../Types";
+
+import ServerC from "@/Components/serverC";
 
 interface CategoriesProps {
   setSelectedCategory: SetStateType<number>;
@@ -15,7 +17,7 @@ const Categories: React.FC<CategoriesProps> = ({
 
   useEffect(() => {
     const initializeCategories = async () => {
-      const categories = await getCategories();
+      const categories = await ServerC();
       setCategories(categories);
     };
     initializeCategories();

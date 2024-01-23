@@ -1,6 +1,6 @@
 import { Values, QuizData, WindowData } from "@/Types";
 
-export const AddNewWindow = (setValues:React.Dispatch<React.SetStateAction<Values[]>>, title:string, type:string, data: QuizData | WindowData) =>{
+export const AddNewWindow = (setValues:React.Dispatch<React.SetStateAction<Values[]>>, type:string, data: QuizData | WindowData) =>{
     setValues((prev) => {
         let value = 10;
         let valueArray = [];
@@ -15,7 +15,6 @@ export const AddNewWindow = (setValues:React.Dispatch<React.SetStateAction<Value
         }
         const newItem = {
           id: Date.now(),
-          title: title,
           positionX: value,
           positionY: value,
           type: type,

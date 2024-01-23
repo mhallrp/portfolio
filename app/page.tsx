@@ -1,13 +1,15 @@
 import Desktop from "../Components/Desktop";
 
-const apiKey = process.env.API_KEY;
+
+
 async function getSessionStatus() {
-  if (typeof apiKey !== "undefined") {
-    try {
+  // const apiKey = process.env.API_KEY;
+  // if (typeof apiKey !== "undefined") {
+  //   try {
       const response = await fetch(`https://request.matt-hall.dev/check`, {
         credentials: "include",
         headers: {
-          "X-API-Key": apiKey,
+          "X-API-Key": process.env.API_KEY as string,
         },
       });
       const data = await response.json();
@@ -16,11 +18,11 @@ async function getSessionStatus() {
       } else {
         return { data: data.error, success: false };
       }
-    } catch (networkError) {
-      return { data: "Network error occurred", success: false };
-    }
-  }
-  return { data: "API key is undefined", success: false };
+  //   } catch (networkError) {
+  //     return { data: "Network error occurred", success: false };
+  //   }
+  // }
+  // return { data: "API key is undefined", success: false };
 }
 
 export default async function App() {
