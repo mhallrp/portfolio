@@ -23,7 +23,7 @@ export default function App() {
     const checkSession = async () => {
       const response = await getSessionStatus();
       setUserData(response.data);
-      response.success && setState("quiz");
+      response.success ? setState("quiz") : AddNewWindow(setValues, "login", { title: "Welcome to portfolio 98", data: "" });
     };
     checkSession();
   }, []);
