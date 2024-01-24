@@ -1,6 +1,8 @@
-
+"use server";
 
 import { AuthResponse, LoginResponse, UserData } from "../Types";
+
+import { headers } from 'next/headers'
 
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 interface SessionResponse {
@@ -10,12 +12,15 @@ interface SessionResponse {
 
 export const getSessionStatus = async (): Promise<SessionResponse> => {
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+  const cookieStore = headers()
+  const cookiesAll = cookieStore.get("cookie") 
   if (typeof apiKey !== "undefined") {
     try {
       const response = await fetch(`https://request.matt-hall.dev/check`, {
         credentials: "include",
         headers: {
           "X-API-Key": apiKey,
+          Cookies: cookiesAll || ""
         },
       });
       const data = await response.json();
