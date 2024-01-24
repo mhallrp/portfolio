@@ -22,7 +22,7 @@ const Quiz: React.FC<QuizProps> = ({ setUserData, userData, values, setValues })
   const [selectedCategory, setSelectedCategory] = useState(0);
   const [score, setScore] = useState(0);
   const quizData = values.data as QuizData;
-
+  
 
   useEffect(() => {
     if (startTimer > 0) {
@@ -39,14 +39,9 @@ const Quiz: React.FC<QuizProps> = ({ setUserData, userData, values, setValues })
     setCountdownKey((prevKey) => prevKey + 1);
   };
 
-  useEffect(() =>{
-    console.log("Running")
+  useEffect(() => {
     setQuestions(setValues, selectedCategory, values.id);
-  }, [])
-
-  // useEffect(() => {
-  //   setQuestions(setValues, selectedCategory, values.id);
-  // }, [selectedCategory]);
+  }, [selectedCategory]);
 
   return (
     quizData.triviaQuestions.length > 0 ? (
