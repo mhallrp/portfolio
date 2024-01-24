@@ -1,6 +1,6 @@
-"use server";
+
 import { AuthResponse, LoginResponse, UserData } from "../Types";
-import { cookies } from "next/headers";
+
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
 interface SessionResponse {
