@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
-import { getSessionStatus } from "@/Model/authOutcalls";
+// import { getSessionStatus } from "@/Model/authOutcalls";
 import { Values } from "@/Types";
 import TitleBar from "@/Components/TitleBar";
 import Note from "@/Components/Note";
@@ -19,6 +19,30 @@ export default function App() {
   const [shutdown, setShutdown] = useState(false);
   const isInitialMount = useRef(true);
 
+  const getSessionStatus = async () => {
+    "use server";
+    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+    if (typeof apiKey !== "undefined") {
+      try {
+        const response = await fetch(`https://request.matt-hall.dev/check`, {
+          credentials: "include",
+          headers: {
+            "X-API-Key": apiKey,
+          },
+        });
+        const data = await response.json();
+        if (response.ok) {
+          return { data: data, success: true };
+        } else {
+          return { data: { name: "", score: 0 }, success: false };
+        }
+      } catch (networkError) {
+        return { data: { name: "", score: 0 }, success: false };
+      }
+    }
+    return { data: { name: "", score: 0 }, success: false };
+  };
+
   useEffect(() => {
     const checkSession = async () => {
       const response = await getSessionStatus();
@@ -28,13 +52,13 @@ export default function App() {
     checkSession();
   }, []);
 
-  useEffect(() => {
-    isInitialMount.current
-      ? (isInitialMount.current = false)
-      : state === "quiz"
-        ? setValues([])
-        : AddNewWindow(setValues, "login", { title: "Welcome to portfolio 98", data: "" });
-  }, [state]);
+  // useEffect(() => {
+  //   isInitialMount.current
+  //     ? (isInitialMount.current = false)
+  //     : state === "quiz"
+  //       ? setValues([])
+  //       : AddNewWindow(setValues, "login", { title: "Welcome to portfolio 98", data: "" });
+  // }, [state]);
 
   return (
     <div className={`flex h-dvh w-screen overflow-hidden ${shutdown ? "bg-black" : "bg-windoorsGreen"}`}>
