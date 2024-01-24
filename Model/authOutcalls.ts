@@ -1,5 +1,6 @@
+"use server";
 import { AuthResponse, LoginResponse, UserData } from "../Types";
-
+import { cookies } from "next/headers";
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
 interface SessionResponse {
@@ -17,9 +18,6 @@ export const getSessionStatus = async (): Promise<SessionResponse> => {
           "X-API-Key": apiKey,
         },
       });
-
-      console.log(response.headers);
-
       const data = await response.json();
       if (response.ok) {
         return { data: data, success: true };
@@ -47,6 +45,7 @@ export const Login = async (username: string, password: string): Promise<LoginRe
         body: JSON.stringify({ user: { username, password } }),
       });
       const data = await response.json();
+      response.headers.get("set-cookie");
       if (!response.ok) {
         const errorMessage = data.errorMessage || "Login failed for an unknown reason";
         return {
