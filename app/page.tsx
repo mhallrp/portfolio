@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
+import { getSessionStatus } from "@/Model/authOutcalls";
 import { Values } from "@/Types";
 import TitleBar from "@/Components/TitleBar";
 import Note from "@/Components/Note";
@@ -10,8 +11,6 @@ import ErrorView from "@/Components/ErrorView";
 import { WindowData } from "@/Types";
 import { AddNewWindow } from "@/Model/WindowLogic";
 
-import { getSessionStatus } from "@/Model/authOutcalls";
-
 export default function App() {
   const [state, setState] = useState("login");
   const [values, setValues] = useState<Values[]>([]);
@@ -19,7 +18,6 @@ export default function App() {
   const [topZ, setTopZ] = useState(51);
   const [shutdown, setShutdown] = useState(false);
   const isInitialMount = useRef(true);
-
 
   useEffect(() => {
     const checkSession = async () => {
@@ -29,7 +27,6 @@ export default function App() {
     };
     checkSession();
   }, []);
-
 
   useEffect(() => {
     isInitialMount.current
