@@ -48,7 +48,3 @@ export interface FormData {
   isRegister: boolean;
 }
 
-export interface InputErrors {
-  usernameError: string;
-  passwordError: string;
-}

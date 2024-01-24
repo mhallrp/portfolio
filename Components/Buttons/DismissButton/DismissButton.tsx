@@ -1,35 +1,33 @@
 import { useState } from "react";
 
 interface CancelButtonProps {
-    action: () => void;
-  }
+  action: () => void;
+  title: string;
+}
 
-const CancelButton:React.FC<CancelButtonProps> = (action) => {
-
-const [isHeld, setIsHeld] = useState(false);
+const ConfirmButton: React.FC<CancelButtonProps> = ({ action, title }) => {
+  const [isHeld, setIsHeld] = useState(false);
 
   return (
     <div
-      className={`border h-fit mt-2
+      className={`mt-2 h-fit border
         ${isHeld ? "border-b-white" : "border-b-black"} 
         ${isHeld ? "border-r-white" : "border-r-black"}
         ${isHeld ? "border-t-black" : "border-t-white"}
         ${isHeld ? "border-l-black" : "border-l-white"}`}
     >
       <button
-        onMouseDown={() => {
-          setIsHeld(true);
-        }}
+        onMouseDown={() => setIsHeld(true)}
         onMouseUp={() => setIsHeld(false)}
         onMouseLeave={() => setIsHeld(false)}
-        className={`min-w-20 py-[2px] border text-bold text-black`}
-        onClick={() => action}
+        className={`text-bold min-w-20 border py-[2px] text-black`}
+        onClick={action}
         type="button"
       >
-        Cancel
+       {title}
       </button>
     </div>
   );
 };
 
-export default CancelButton;
+export default ConfirmButton;

@@ -1,36 +1,36 @@
-import { InputErrors, FormData, UserData, Values } from "../../../Types";
+import { FormData, UserData, Values } from "../../../Types";
 import { PASSWORD_REQUIREMENTS } from "../../../constants";
 import PasswordInput from "../PasswordInput";
 import UsernameInput from "../UsernameInput";
-import SubmitButton from "../../Buttons/SubmitButton";
-import CancelButton from "../../Buttons/CancelButton";
-import { HandleSubmit, CheckUsername } from "@/Model/authLogic";
+import SubmitButton from "../../Buttons/ConfirmButton";
+import CancelButton from "../../Buttons/DismissButton";
+import { HandleSubmit, DataCheck } from "@/Model/authLogic";
 import { AddNewWindow } from "@/Model/WindowLogic";
 
 interface InputSectionProps {
   formData: FormData;
   setFormData: React.Dispatch<React.SetStateAction<FormData>>;
-  disableButton: boolean;
   setState: React.Dispatch<React.SetStateAction<string>>;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   setValues: React.Dispatch<React.SetStateAction<Values[]>>;
   setUserData: React.Dispatch<React.SetStateAction<UserData>>;
 }
 
-const AuthInputSection: React.FC<InputSectionProps> = ({ formData, setFormData, disableButton, setState, setLoading, setValues, setUserData }) => {
+const AuthInputSection: React.FC<InputSectionProps> = ({ formData, setFormData, setState, setLoading, setValues, setUserData }) => {
   return (
     <>
       <form
         onSubmit={async (e) => {
           e.preventDefault();
-          if (CheckUsername(formData.username)) {
+          const dataCheck = DataCheck(formData);
+          if (dataCheck.result) {
             setLoading(true);
-            const result = await HandleSubmit(e, formData, setState, setUserData, disableButton);
+            const result = await HandleSubmit(e, formData, setState, setUserData);
             if (!result) {
               setLoading(false);
             }
           } else {
-            AddNewWindow(setValues, "error", { title: "Error", data: "error" });
+            AddNewWindow(setValues, "error", { title: "Error", data: dataCheck.message! });
           }
         }}
       >
@@ -41,7 +41,7 @@ const AuthInputSection: React.FC<InputSectionProps> = ({ formData, setFormData, 
         </div>
         <div className="flex w-full justify-end gap-2">
           <SubmitButton label={"Submit"} action={() => {}} />
-          <CancelButton action={() => {}} />
+          <CancelButton title="Cancel" action={() => {}} />
         </div>
       </form>
     </>

@@ -1,73 +1,36 @@
 import { Register, Login } from "./authOutcalls";
 import { UserData, FormData } from "../Types";
 
-export const UserInputCheck = (userFocus: boolean, username: string) => {
-  if (userFocus || username.length < 1) {
-    return true;
-  } else if (username.length < 4 || username.length > 20) {
-    return userFocus;
-  }
-  return true;
-};
-
-export const CheckUsername = (username: string) => {
-  if (username.length < 4 || username.length > 20) {
-    return false;
-  }
-  return true;
-};
-
-export const PasswordInputCheck = (formData: FormData) => {
-  if (formData.password.length === 0) {
-    return { state: false, message: "" };
-  }
-  if (formData.password.length < 4) {
-    return { state: true, message: "Password too short" };
-  }
-  if (formData.password.length > 20) {
-    return { state: true, message: "Password too long" };
-  }
-  if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/.test(formData.password)) {
-    return {
-      state: true,
-      message: "Complexity issue",
-    };
-  }
-  if (formData.isRegister && formData.confirmPassword.length !== 0 && formData.password !== formData.confirmPassword) {
-    return { state: true, message: "Passwords do not match" };
-  }
-  return { state: false, message: "" };
-};
-
-export const CheckFormData = (formData: FormData) => {
-  if (formData.isRegister && formData.password !== formData.confirmPassword) {
-    return { result: true, message: "Passwords do not match." };
-  }
+export const DataCheck = (formData: FormData) => {
   if (formData.username.length < 4 || formData.username.length > 20) {
+    return { result: false, message: "Username must be between 4 and 20 characters in length." };
+  }
+
+  if (
+    formData.password.length < 4 ||
+    formData.password.length > 20 ||
+    !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/.test(formData.password)
+  ) {
     return {
-      result: true,
-      message: "Username must be between 4 and 20 characters.",
+      result: false,
+      message:
+        "Password must be between 4 and 20 characters in length, contain 1 upper and lower case character aswell as a number and special character.",
     };
   }
-  if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/.test(formData.password)) {
-    return {
-      result: true,
-      message: "Password must include at least one uppercase letter, one lowercase letter, one digit, and one special character.",
-    };
+
+  if (formData.isRegister && formData.password !== formData.confirmPassword) {
+    return { result: false, message: "Passwords do not match." };
   }
-  return { result: false, message: "" };
+
+  return { result: true };
 };
 
 export const HandleSubmit = async (
   e: React.FormEvent<HTMLFormElement>,
   formData: FormData,
-  setState:   React.Dispatch<React.SetStateAction<string>>,
-  setUserData:  React.Dispatch<React.SetStateAction<UserData>>,
-  disableButton: boolean,
+  setState: React.Dispatch<React.SetStateAction<string>>,
+  setUserData: React.Dispatch<React.SetStateAction<UserData>>,
 ) => {
-  if (disableButton) {
-    return false;
-  }
   e.preventDefault();
   if (formData.isRegister) {
     const response = await Register(formData.username, formData.password);
@@ -78,7 +41,7 @@ export const HandleSubmit = async (
   const { data, error, status } = await Login(formData.username, formData.password);
   if (status) {
     setUserData({ name: data.name, score: data.score });
-    setState("quiz")
+    setState("quiz");
     return true;
   } else {
     return false;

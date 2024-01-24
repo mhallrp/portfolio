@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaTimes } from "react-icons/fa";
 import { Values } from "../../Types";
 import Draggable from "react-draggable";
@@ -14,7 +14,8 @@ interface TitleBarProps {
 
 const TitleBar: React.FC<TitleBarProps> = ({ children, values, setValues, zIndex, updateZIndex, close }) => {
   const [currentZIndex, setCurrentZIndex] = useState(50);
-  const nodeRef = React.useRef(null);
+  const nodeRef = React.useRef<HTMLDivElement>(null);
+  const [loaded, setLoaded] = useState(false);
   const handleClose = () => {
     setValues((prevValues) => prevValues.filter((item) => item.id !== values.id));
   };
@@ -30,6 +31,19 @@ const TitleBar: React.FC<TitleBarProps> = ({ children, values, setValues, zIndex
     }
   };
 
+  useEffect(() => {
+    if (nodeRef.current) {
+      const width = nodeRef.current.offsetWidth;
+      const height = nodeRef.current.offsetHeight;
+      setValues((prevValues) =>
+        prevValues.map((item) =>
+          item.id === values.id ? { ...item, positionX: (window.outerWidth - width) / 2, positionY: (window.outerHeight - height) / 4 } : item,
+        ),
+      );
+      setZIndex()
+    }
+  }, []);
+
   return (
     <Draggable
       nodeRef={nodeRef}
@@ -42,7 +56,7 @@ const TitleBar: React.FC<TitleBarProps> = ({ children, values, setValues, zIndex
       <div
         onClick={() => setZIndex()}
         ref={nodeRef}
-        className="fixed w-auto border border-gray-300 bg-white font-sans"
+        className={`fixed w-auto border border-gray-300 bg-white font-sans ${loaded ? "opacity-0" : "opacity-100"}`}
         style={{ zIndex: currentZIndex }}
       >
         <div className="m-[1px] flex flex-col bg-greyTaskBar">

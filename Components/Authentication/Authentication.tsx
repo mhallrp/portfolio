@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
-import { CheckFormData, PasswordInputCheck } from "../../Model/authLogic";
+import { useState } from "react";
 import InputSection from "./InputSection";
-import { FormData, InputErrors, UserData, Values } from "../../Types";
+import { FormData, UserData, Values } from "../../Types";
 import ImageSection from "./ImageSection";
 import LoginRegister from "./LoginRegisterOption/LoginRegisterOption";
 import TitleSection from "./TitleSection/TitleSection";
@@ -13,31 +12,14 @@ interface AuthenticationProps {
 }
 
 const Authentication: React.FC<AuthenticationProps> = ({ setState, setValues, setUserData }) => {
-  const [disableButton, setDisableButton] = useState(true);
+
   const [loading, setLoading] = useState(false);
-  // const [inputErrors, setInputErrors] = useState<InputErrors>({
-  //   usernameError: "",
-  //   passwordError: "",
-  // });
   const [formData, setFormData] = useState<FormData>({
     username: "",
     password: "",
     confirmPassword: "",
     isRegister: false,
   });
-
-  useEffect(() => {
-    const checkData = CheckFormData(formData);
-    setDisableButton(checkData.result);
-  }, [formData.username, formData.password, formData.confirmPassword]);
-
-  // useEffect(() => {
-  //   const inputCheck = PasswordInputCheck(formData);
-  //   setInputErrors((prevErrors) => ({
-  //     ...prevErrors,
-  //     passwordError: inputCheck.message,
-  //   }));
-  // }, [formData]);
 
   return (
     <div className="z-50 flex">
@@ -47,7 +29,6 @@ const Authentication: React.FC<AuthenticationProps> = ({ setState, setValues, se
         <InputSection
           formData={formData}
           setFormData={setFormData}
-          disableButton={disableButton}
           setState={setState}
           setLoading={setLoading}
           setValues={setValues}

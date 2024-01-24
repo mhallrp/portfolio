@@ -7,7 +7,9 @@ import QuizNotes from "@/Components/Note";
 import Quiz from "@/Components/Quiz";
 import TaskBar from "@/Components/TaskBar";
 import Authentication from "@/Components/Authentication";
-import ErrorView from "@/Components/WarningView";
+import ErrorView from "@/Components/ErrorView";
+import { WindowData } from "@/Types";
+import { AddNewWindow } from "@/Model/WindowLogic";
 
 export default function App() {
   const [state, setState] = useState("login");
@@ -21,42 +23,33 @@ export default function App() {
     const checkSession = async () => {
       const response = await getSessionStatus();
       setUserData(response.data);
-      response.success ? setState("quiz") : showLogin();
+      response.success && setState("quiz");
     };
     checkSession();
   }, []);
 
-
-
   useEffect(() => {
-    isInitialMount.current ? (isInitialMount.current = false) : state === "quiz" ? setValues([]) : showLogin();
+    isInitialMount.current
+      ? (isInitialMount.current = false)
+      : state === "quiz"
+        ? setValues([])
+        : AddNewWindow(setValues, "login", { title: "Welcome to portfolio 98", data: "" });
   }, [state]);
-
-  const showLogin = () => {
-    setValues([
-      {
-        id: 0,
-        positionX: (window.outerWidth - 528) / 2,
-        positionY: (window.outerHeight - 278) / 4,
-        type: "login",
-        data: { title: "Welcome to portfolio 98", data: "" },
-      },
-    ]);
-  };
 
   return (
     <div className={`flex h-dvh w-screen overflow-hidden ${shutdown ? "bg-black" : "bg-windoorsGreen"}`}>
       <div className={`flex w-full flex-col items-center overflow-hidden`}>
         <div className="w-full overflow-hidden">
           {values.map((valueData) => {
+            const close = valueData.type !== "error" && valueData.type !== "login";
             return (
-              <TitleBar key={valueData.id} values={valueData} setValues={setValues} zIndex={topZ} updateZIndex={setTopZ} close={true}>
+              <TitleBar key={valueData.id} values={valueData} setValues={setValues} zIndex={topZ} updateZIndex={setTopZ} close={close}>
                 {valueData.type === "note" ? (
                   <QuizNotes />
                 ) : valueData.type === "quiz" ? (
                   <Quiz setUserData={setUserData} setValues={setValues} values={valueData} userData={userData} />
                 ) : valueData.type === "error" ? (
-                  <ErrorView />
+                  <ErrorView errorData={valueData.data as WindowData} values={valueData} setValues={setValues} />
                 ) : (
                   <Authentication setState={setState} setValues={setValues} setUserData={setUserData} />
                 )}
