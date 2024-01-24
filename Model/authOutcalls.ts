@@ -1,3 +1,5 @@
+'use server'
+
 import { AuthResponse, LoginResponse, UserData } from "../Types";
 
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
