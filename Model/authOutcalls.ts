@@ -1,4 +1,4 @@
-'use server'
+
 
 import { AuthResponse, LoginResponse, UserData } from "../Types";
 
