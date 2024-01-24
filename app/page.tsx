@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
-import { getSessionStatus } from "@/Model/sessionCheck";
+import { getSessionStatus } from "@/Model/authOutcalls";
 import { Values } from "@/Types";
 import TitleBar from "@/Components/TitleBar";
 import Note from "@/Components/Note";
