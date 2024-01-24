@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { getSessionStatus } from "@/Model/authOutcalls";
 import { Values } from "@/Types";
 import TitleBar from "@/Components/TitleBar";
-import QuizNotes from "@/Components/Note";
+import Note from "@/Components/Note";
 import Quiz from "@/Components/Quiz";
 import TaskBar from "@/Components/TaskBar";
 import Authentication from "@/Components/Authentication";
@@ -45,7 +45,7 @@ export default function App() {
             return (
               <TitleBar key={valueData.id} values={valueData} setValues={setValues} zIndex={topZ} updateZIndex={setTopZ} close={close}>
                 {valueData.type === "note" ? (
-                  <QuizNotes />
+                  <Note />
                 ) : valueData.type === "quiz" ? (
                   <Quiz setUserData={setUserData} setValues={setValues} values={valueData} userData={userData} />
                 ) : valueData.type === "error" ? (

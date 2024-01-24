@@ -23,6 +23,7 @@ const Quiz: React.FC<QuizProps> = ({ setUserData, userData, values, setValues })
   const [score, setScore] = useState(0);
   const quizData = values.data as QuizData;
 
+
   useEffect(() => {
     if (startTimer > 0) {
       const timer = setTimeout(() => {
@@ -38,13 +39,18 @@ const Quiz: React.FC<QuizProps> = ({ setUserData, userData, values, setValues })
     setCountdownKey((prevKey) => prevKey + 1);
   };
 
-  useEffect(() => {
+  useEffect(() =>{
+    console.log("Running")
     setQuestions(setValues, selectedCategory, values.id);
-  }, [selectedCategory]);
+  }, [])
+
+  // useEffect(() => {
+  //   setQuestions(setValues, selectedCategory, values.id);
+  // }, [selectedCategory]);
 
   return (
-    quizData.triviaQuestions.length > 0 && (
-      <div className="relative flex min-w-0 max-w-5xl flex-col items-center justify-center  border ">
+    quizData.triviaQuestions.length > 0 ? (
+      <div className="relative flex min-w-0 max-w-5xl flex-col items-center justify-center border ">
         <div className={`z100 white fixed bg-white px-16 py-12 ${startTimer === 0 && "opacity-0"}`}>
           <h1 className="text-4xl ">{startTimer}</h1>
         </div>
@@ -94,7 +100,8 @@ const Quiz: React.FC<QuizProps> = ({ setUserData, userData, values, setValues })
           />
         </div>
       </div>
-    )
+    ) : 
+    <div className="relative w-[950px] h-[400px] bg-white"></div>
   );
 };
 
