@@ -33,17 +33,28 @@ export const HandleSubmit = async (
 ) => {
   e.preventDefault();
   if (formData.isRegister) {
-    const response = await Register(formData.username, formData.password);
-    if (!response.status) {
+    const registerResponse = await Register(formData.username, formData.password);
+    if (!registerResponse.status) {
       return false;
     }
   }
-  const { data, error, status } = await Login(formData.username, formData.password);
-  if (status) {
+
+  const loginResponse = await fetch("/api/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ username: formData.username, password: formData.password }),
+  });
+
+  if (loginResponse.ok) {
+    const data = await loginResponse.json();
     setUserData({ name: data.name, score: data.score });
     setState("quiz");
     return true;
   } else {
+    const { error } = await loginResponse.json();
+    console.log(error); // Handle the error appropriately
     return false;
   }
 };
