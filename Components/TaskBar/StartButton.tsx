@@ -45,7 +45,7 @@ const StartButton:React.FC<StartButtonProps> = ({setStartMenuVisible, startMenuV
             src={winDoors.src}
             alt="logo"
           />
-          <button className="pr-2">Start</button>
+          <button className="pr-2">Starttt</button>
         </div>
       </div>
     </div>
