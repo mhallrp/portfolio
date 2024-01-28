@@ -1,4 +1,4 @@
-import LoginIcon from "../../../assets/loginIcon.png";
+import LoginIcon from "@/assets/loginIcon.png";
 
 const ImageSection = () => {
   return (

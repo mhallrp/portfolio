@@ -36,8 +36,8 @@ export default function App() {
         : AddNewWindow(setValues, "login", { title: "Welcome to portfolio 98", data: "" });
   }, [state]);
 
-  return (
-    <div className={`flex h-dvh w-screen overflow-hidden ${shutdown ? "bg-black" : "bg-windoorsGreen"}`}>
+  return !shutdown ? (
+    <div className="flex h-dvh w-screen overflow-hidden bg-windoorsGreen">
       <div className={`flex w-full flex-col items-center overflow-hidden`}>
         <div className="w-full overflow-hidden">
           {values.map((valueData) => {
@@ -62,5 +62,7 @@ export default function App() {
         )}
       </div>
     </div>
+  ) : (
+    <div className="flex h-dvh w-screen overflow-hidden bg-black"></div>
   );
 }
