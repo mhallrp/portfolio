@@ -46,6 +46,7 @@ export default function App() {
               <TitleBar key={valueData.id} values={valueData} setValues={setValues} zIndex={topZ} updateZIndex={setTopZ} close={close}>
                 {valueData.type === "note" ? (
                   <Note />
+                  
                 ) : valueData.type === "quiz" ? (
                   <Quiz setUserData={setUserData} setValues={setValues} values={valueData} userData={userData} />
                 ) : valueData.type === "error" ? (
